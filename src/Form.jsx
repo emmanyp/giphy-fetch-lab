@@ -1,32 +1,36 @@
 import React, {useState} from 'react';
 
 function Form(props) {
-  const [movieTitle, setMovieTitle] = useState('')
+  const [gifSearch, setGifSearch] = useState('')
 
   const handleSubmit = e => {
     console.log('handleSubmit clicked');
     e.preventDefault();
-    props.handleSubmit(movieTitle)
-    setMovieTitle('')
+    props.handleSubmit(gifSearch)
+    setGifSearch('')
   };
 
   const handleChange = e => {
     console.log('handleChange clicked');
-    const title =  e.target.value
-    setMovieTitle(title)
+    const search =  e.target.value
+    setGifSearch(search)
   };
-
+  const refreshPage = ()=>{
+    window.location.reload();
+  }
     return (
       <>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="movieTitle">Title:</label>
+  
           <input
-            id="movieTitle"
             type="text"
-            value={movieTitle}
+            value={gifSearch}
+            placeholder= 'Type of giphy'
             onChange={handleChange}
           />
-          <input type="submit" value="Find Movie Info" />
+          <input type="submit" value="Submit" />
+          < button onClick={refreshPage}> Make API Call Again</button>
+        <h1>Pull random gifs from Giphy</h1>
         </form>
       </>
     );
